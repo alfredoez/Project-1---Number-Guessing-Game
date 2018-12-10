@@ -30,16 +30,18 @@ def start_game():
 
         
     while True:
-        guess_num = int(input("Enter a number between 1-10 "))
         try:
+            guess_num = input("Enter a number between 1-10 ")
+            if int(guess_num) not in range (1,11):
+                print("Please enter a number between 1-10 \n")
+                start_game()
             guess_num = int(guess_num)
-            if guess_num not in range (1,10):
-                raise ValueError("Please enter a number between 1-10")
-        except ValueError as err:
-            raise ValueError(f"Something happened! {err}. Please, Try again" )
+        except:
+            print(f"{guess_num} is not a number, please try again \n")
+            start_game()
         else:
             score += 1
-            print(score)    
+            print(f"Attempt: {score}")    
             if guess_num != num:
                 if guess_num < num:
                     print("Higher")
